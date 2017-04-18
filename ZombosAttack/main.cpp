@@ -1,31 +1,37 @@
 #include <SFML\Graphics.hpp>
-#include <SFML\System.hpp>
-#include <SFML\Audio.hpp>
-#include <SFML\Window.hpp>
-#include <SFML\System\FileInputStream.hpp>
-
+#include "Controller.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1489, 644), "Zombos Attack!");
 
-	// loads sbackground image and saves into the sprite background
-	sf::Texture backgroundTexture;
-	if(backgroundTexture.loadFromFile("Background.png", sf::IntRect(0, 0, 1489, 644)))
-		sf::Sprite background(backgroundTexture);
-	
+    sf::RenderWindow window(sf::VideoMode(1489, 644), "Zombos Attack!");
+	sf::Texture texture, player_t;
+	texture.loadFromFile("Background.png");
+	sf::Sprite background;
+	background.setTexture(texture);
+
+	player_t.loadFromFile("Illuminati.png");
+	Player p1(.5);
+	p1.setTexture(player_t);
+
+	Controller p1Controller(&p1);
 
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
+			p1Controller.runEvent(event);
             if (event.type == sf::Event::Closed)
+			{
                 window.close();
+			}
         }
+		p1.move();
 
         window.clear();
-		//window.draw(background);
+		window.draw(background);
+		window.draw(p1);
         window.display();
     }
 
