@@ -1,5 +1,9 @@
 #include "Controller.h"
-
+/// \ breif : binds a controller object to a player via a pointer, 
+/// \			allows custom controls to be input for a player
+/// \ parameters : player to bind controls to, keys for each control
+/// \ precons : p points to a valid player object
+/// \ return : a contoller object is created
 Controller::Controller(Player *p, sf::Keyboard::Key up,
 					sf::Keyboard::Key down, sf::Keyboard::Key left,
 					sf::Keyboard::Key right) 
@@ -11,6 +15,11 @@ Controller::Controller(Player *p, sf::Keyboard::Key up,
 	this->p = p;
 }
 
+/// \ breif : takes an input event and if it matches a set control it runs the
+/// \			correct action
+/// \ parameters : an event input from the keyboard
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
 bool Controller::runEvent(const sf::Event& event) 
 {
 	bool result = true;
@@ -18,7 +27,8 @@ bool Controller::runEvent(const sf::Event& event)
 	{
 		result = this->keyPressed(event);
 	}
-	else if (event.type == sf::Event::KeyReleased) {
+	else if (event.type == sf::Event::KeyReleased) 
+	{
 		result = keyReleased(event);
 	}
 	else
@@ -28,23 +38,28 @@ bool Controller::runEvent(const sf::Event& event)
 	return result;
 }
 
+/// \ breif : checks key presses and enacts them summarily
+/// \ parameters : an event input from the keyboard
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
 bool Controller::keyPressed(const sf::Event& event)
 {
 	bool result = true;
 	if (event.key.code == up) 
 	{
-		result = this->startUp(event);
+		this->startUp();
 	}
 	else if (event.key.code == down) 
 	{
-		result = this->startDown(event);
+		this->startDown();
 	}
 	else if (event.key.code == left) 
 	{
-		result = startLeft(event);
+		startLeft();
 	}
-	else if (event.key.code == right) {
-		result = startRight(event);
+	else if (event.key.code == right)
+	{
+		startRight();
 	}
 	else
 	{
@@ -54,24 +69,28 @@ bool Controller::keyPressed(const sf::Event& event)
 	return result;
 }
 
+/// \ breif : checks key releases and enacts them summarily
+/// \ parameters : an event input from the keyboard
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
 bool Controller::keyReleased(const sf::Event& event)
 {
 	bool result = true;
 	if (event.key.code == up) 
 	{
-		return stopUp(event);
+		return stopUp();
 	}
 	else if (event.key.code == down) 
 	{
-		return stopDown(event);
+		return stopDown();
 	}
 	else if (event.key.code == left) 
 	{
-		return stopLeft(event);
+		return stopLeft();
 	}
 	else if (event.key.code == right) 
 	{
-		return stopRight(event);
+		return stopRight();
 	}
 	else
 	{
@@ -80,87 +99,84 @@ bool Controller::keyReleased(const sf::Event& event)
 	return result;
 }
 
-bool Controller::startUp(const sf::Event& event)
-{
-	bool result = false;
-	if (p->movement.y == 0)
+/// \ breif : takes the up key press and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+void Controller::startUp()
+{	
+	if (p->movement.x == 0) // if no x axis movement
+		p->movement.y = -p->speed;
+	else // if moveing in x and y
 	{
-		result = true;
-		if (p->movement.x == 0)
-			p->movement.y = -p->speed;
-		else
-		{
-			p->movement.y = -p->speed * TWO_DIRECTIONAL_CORRECTION;
-			p->movement.x *= TWO_DIRECTIONAL_CORRECTION;
-		}
+		p->movement.y = -p->speed * TWO_DIRECTIONAL_CORRECTION;
+		p->movement.x *= TWO_DIRECTIONAL_CORRECTION;
 	}
-	return result;
+	
 }
 
-bool Controller::startDown(const sf::Event& event)
+/// \ breif : takes the down key press and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+void Controller::startDown()
 {
-	bool result = false;
-	if (p->movement.y == 0)
+	if (p->movement.x == 0) // if no x axis movement
 	{
-		result = true;
-		if (p->movement.x == 0)
-		{
-			p->movement.y = p->speed;
-		}
-		else
-		{
-			p->movement.y = p->speed * TWO_DIRECTIONAL_CORRECTION;
-			p->movement.x *= TWO_DIRECTIONAL_CORRECTION;
-		}
+		p->movement.y = p->speed;
 	}
-	return result;
+	else // if moveing in x and y
+	{
+		p->movement.y = p->speed * TWO_DIRECTIONAL_CORRECTION;
+		p->movement.x *= TWO_DIRECTIONAL_CORRECTION;
+	}
 }
 
-bool Controller::startLeft(const sf::Event& event)
+/// \ breif : takes the left key press and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+void Controller::startLeft()
 {
-	bool result = false;
-	if (p->movement.x == 0) 
+	if (p->movement.y == 0) // if no y axis movement
 	{
-		result = true;
-		if (p->movement.y == 0)
-		{
-			p->movement.x = -p->speed;
-		}
-		else 
-		{
-			p->movement.x = -p->speed * TWO_DIRECTIONAL_CORRECTION;
-			p->movement.y *= TWO_DIRECTIONAL_CORRECTION;
-		}
+		p->movement.x = -p->speed;
 	}
-	return result;
+	else // if moveing in x and y
+	{
+		p->movement.x = -p->speed * TWO_DIRECTIONAL_CORRECTION;
+		p->movement.y *= TWO_DIRECTIONAL_CORRECTION;
+	}
 }
 
-bool Controller::startRight(const sf::Event& event)
+/// \ breif : takes the right key press and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+void Controller::startRight()
 {
-	bool result = false;
-	if (p->movement.x == 0)
+	if (p->movement.y == 0) // if no y axis movement
 	{
-		result = true;
-		if (p->movement.y == 0)
-		{
-			p->movement.x = p->speed;
-		}
-		else
-		{
-			p->movement.x = p->speed * TWO_DIRECTIONAL_CORRECTION;
-			p->movement.y *= TWO_DIRECTIONAL_CORRECTION;
-		}
+		p->movement.x = p->speed;
 	}
-	return result;
+	else // if moveing in x and y
+	{
+		p->movement.x = p->speed * TWO_DIRECTIONAL_CORRECTION;
+		p->movement.y *= TWO_DIRECTIONAL_CORRECTION;
+	}
 }
 
-bool Controller::stopUp(const sf::Event& event)
+/// \ breif : takes the up key release and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+bool Controller::stopUp()
 {
 	bool result = false;
-	if (p->movement.y < 0)
+	if (p->movement.y < 0) // if moving up
 	{
 		result = true;
-		if (p->movement.x != 0)
+		if (p->movement.x != 0) // moving in two directions
 		{
 			p->movement.x /= TWO_DIRECTIONAL_CORRECTION;
 		}
@@ -169,13 +185,17 @@ bool Controller::stopUp(const sf::Event& event)
 	return result;
 }
 
-bool Controller::stopDown(const sf::Event& event)
+/// \ breif : takes the down key release and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+bool Controller::stopDown()
 {
 	bool result = false;
-	if (p->movement.y > 0)
+	if (p->movement.y > 0) // if moving down
 	{
 		result = true;
-		if (p->movement.x != 0)
+		if (p->movement.x != 0) // moving in two directions
 		{
 			p->movement.x /= TWO_DIRECTIONAL_CORRECTION;
 		}
@@ -183,13 +203,18 @@ bool Controller::stopDown(const sf::Event& event)
 	}
 	return result;
 }
-bool Controller::stopLeft(const sf::Event& event)
+
+/// \ breif : takes the left key release and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect
+bool Controller::stopLeft()
 {
 	bool result = false;
-	if (p->movement.x < 0)
+	if (p->movement.x < 0) // if moving left
 	{
 		result = true;
-		if (p->movement.y != 0)
+		if (p->movement.y != 0) // moving in two directions
 		{
 			p->movement.y /= TWO_DIRECTIONAL_CORRECTION;
 		}
@@ -197,13 +222,18 @@ bool Controller::stopLeft(const sf::Event& event)
 	}
 	return result;
 }
-bool Controller::stopRight(const sf::Event& event)
+
+/// \ breif : takes the right key release and runs movement logic on it
+/// \ parameters :
+/// \ precons : the player pointer points to a valid player object
+/// \ return : if control had an effect 
+bool Controller::stopRight()
 {
 	bool result = false;
-	if (p->movement.x > 0)
+	if (p->movement.x > 0) // if moving right
 	{
 		result = true;
-		if (p->movement.y != 0)
+		if (p->movement.y != 0) // moving in two directions
 		{
 			p->movement.y /= TWO_DIRECTIONAL_CORRECTION;
 		}
