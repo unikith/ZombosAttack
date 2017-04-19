@@ -1,5 +1,9 @@
 #include <SFML\Graphics.hpp>
 #include "Controller.h"
+#include "iostream"
+
+using std::cout;
+using std::endl;
 
 int main()
 {
@@ -20,7 +24,7 @@ int main()
     {
         sf::Event event;
         while (window.pollEvent(event))
-        {
+		{
 			p1Controller.runEvent(event);
             if (event.type == sf::Event::Closed)
 			{

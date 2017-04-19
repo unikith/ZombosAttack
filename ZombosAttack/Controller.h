@@ -19,13 +19,13 @@ private:
 	bool keyPressed(const sf::Event& event);
 	bool keyReleased(const sf::Event& event);
 
-	bool startUp(const sf::Event& event);
-	bool startDown(const sf::Event& event);
-	bool startLeft(const sf::Event& event);
-	bool startRight(const sf::Event& event);
+	void startUp();
+	void startDown();
+	void startLeft();
+	void startRight();
 
-	bool stopUp(const sf::Event& event);
-	bool stopDown(const sf::Event& event);
-	bool stopLeft(const sf::Event& event);
-	bool stopRight(const sf::Event& event);
+	bool stopUp();
+	bool stopDown();
+	bool stopLeft();
+	bool stopRight();
 };
