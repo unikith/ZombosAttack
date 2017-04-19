@@ -1,6 +1,5 @@
 #include <SFML\Graphics.hpp>
 #include "Controller.h"
-#include "iostream"
 
 using std::cout;
 using std::endl;
@@ -15,7 +14,7 @@ int main()
 	background.setTexture(texture);
 
 	player_t.loadFromFile("Illuminati.png");
-	Player p1(.5);
+	Player p1(.9f, 5);
 	p1.setTexture(player_t);
 
 	Controller p1Controller(&p1);

@@ -6,9 +6,6 @@ class Player : public Character
 {
 	friend class Controller;
 public:
-	Player(float speed);
-	void move();
-
-private:
+	Player(const float& speed, const unsigned int& health);
 };
 
