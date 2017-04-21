@@ -163,6 +163,7 @@
   <ItemGroup>
     <Image Include="Background.png" />
     <Image Include="Illuminati.png" />
+    <Image Include="Peace-Symbol-Transparent.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
