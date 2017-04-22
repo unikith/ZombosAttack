@@ -13,7 +13,7 @@ int main()
 	//Setup Player
 	player_t.loadFromFile("Circle.png");
 	Player p1(.9, 100);
-	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), 1, .1, 1, &window);
+	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), .25, .1, 1, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(.075f, .075f);
 	//Setup Controller
