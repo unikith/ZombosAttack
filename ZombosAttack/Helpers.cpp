@@ -11,3 +11,45 @@ bool Helpers::isInsideWindow(const sf::Transformable& object, const sf::RenderWi
 
 	return true;
 }
+
+void Helpers::lockObjectInWindow(sf::Transformable& object, const sf::RenderWindow& window)
+{
+	if (isUpOfWindow(object, window))
+	{
+		object.setPosition(object.getPosition().x, 0);
+	}
+	else if (isDownOfWindow(object, window))
+	{
+		object.setPosition(object.getPosition().x, window.getSize().y);
+	}
+
+	if (isLeftOfWindow(object, window))
+	{
+		object.setPosition(0, object.getPosition().y);
+	}
+	else if (isRightOfWindow(object, window))
+	{
+		object.setPosition(window.getSize().x, object.getPosition().y);
+	}
+}
+
+
+bool Helpers::isUpOfWindow(const sf::Transformable& object, const sf::RenderWindow& window)
+{
+	return (object.getPosition().y < 0);
+}
+
+bool Helpers::isDownOfWindow(const sf::Transformable& object, const sf::RenderWindow& window)
+{
+	return (object.getPosition().y > window.getSize().y);
+}
+
+bool Helpers::isRightOfWindow(const sf::Transformable& object, const sf::RenderWindow& window)
+{
+	return (object.getPosition().x > window.getSize().x);
+}
+
+bool Helpers::isLeftOfWindow(const sf::Transformable& object, const sf::RenderWindow& window)
+{
+	return (object.getPosition().x < 0);
+}

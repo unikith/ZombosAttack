@@ -1,11 +1,11 @@
 #include "Gun.h"
 
-Gun::Gun(const string & image, const sf::Vector2f& origin, float fireSpeed,
+Gun::Gun(const string & image, const sf::Vector2f& origin, float shotDelay,
 	float bulletSpeed, int damage, sf::RenderWindow *window) {
 	texture.loadFromFile(image); //Loads the texture for gun from string path
 	this->setTexture(texture);
 	this->setOrigin(origin); //Sets the center back of the gun to the origin
-	this->fireSpeed = fireSpeed;
+	this->mShotDelay = shotDelay;
 	this->bulletSpeed = bulletSpeed;
 	this->damage = damage;
 	this->angleDeg = 0;
@@ -14,6 +14,7 @@ Gun::Gun(const string & image, const sf::Vector2f& origin, float fireSpeed,
 	this->shooting = false;
 	this->bulletTexture.loadFromFile("Circle.png"); //CHANGE
 	this->setScale(.5, .5); //Hard coded scale
+	this->mLastShotTime = 0;
 }
 /*
 	Grabs the player's sprite (used for position/radius)
@@ -40,13 +41,27 @@ void Gun::update() {
 	sf::Vector2f gunPos(pSprite->getPosition().x + radius*cos(angleRad),
 		pSprite->getPosition().y + radius*sin(angleRad));
 	setPosition(gunPos);
-	if (shooting) {
+
+	clock_t currentTime = clock();
+
+	if (shooting && currentTime - mLastShotTime >= mShotDelay) {
 		shoot(sf::Vector2f(gunPos.x + getGlobalBounds().width * cos(angleRad),
 			gunPos.y + getGlobalBounds().width * sin(angleRad)), difVector);
+		mLastShotTime = currentTime;
 	}
+
 	for (int i = 0; i < bullets.size(); ++i) {
-		window->draw(*bullets[i]);
-		bullets[i]->move();
+		if (Helpers::isInsideWindow(*(bullets[i]), *window))
+		{
+			window->draw(*bullets[i]);
+			bullets[i]->move();
+		}
+		else
+		{
+			delete bullets[i];
+			bullets.erase(bullets.begin() + i);
+		}
+		
 	}
 }
 void Gun::shoot(sf::Vector2f& spawnPoint, sf::Vector2f& direction) {

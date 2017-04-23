@@ -4,7 +4,7 @@
 class Enemy : public Character
 {
 public:
-	Enemy(const float& speed, const unsigned short& health, const unsigned short& damage); 
+	Enemy(const float& speed, const unsigned short& health, const unsigned short& damage, sf::Texture &texture);
 	Enemy(const Enemy & copy);
 	~Enemy();
 	

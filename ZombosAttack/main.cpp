@@ -1,9 +1,13 @@
 #include <SFML\Graphics.hpp>
 #include "Controller.h"
 #include "Enemy.h"
+#include "Helpers.h"
+#include "EnemySpawner.h"
 
 int main()
 {
+	srand(time(NULL));
+
     sf::RenderWindow window(sf::VideoMode(1489, 644), "Zombos Attack!");
 	sf::Texture texture, player_t, enemy_t;
 	//Setup Background
@@ -13,18 +17,12 @@ int main()
 	//Setup Player
 	player_t.loadFromFile("Circle.png");
 	Player p1(.9, 100);
-	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), .25, .1, 1, &window);
+	EnemySpawner spawner("Peace-Symbol-Transparent.png", 10, 10, &p1, background);
+	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), 250, 10, 1, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
-	p1.setScale(.075f, .075f);
+	p1.setScale(.05f, .05f);
 	//Setup Controller
 	Controller p1Controller(&p1);
-
-	Enemy e1(.125, 5, 6), e2(.2, 5, 6);
-	enemy_t.loadFromFile("Peace-Symbol-Transparent.png");
-	e1.setTexture(enemy_t);
-	e2.setTexture(enemy_t);
-	e1.setScale(.05f, .05f);
-	e2.setScale(.05f, .05f);
 
     while (window.isOpen())
     {
@@ -37,14 +35,12 @@ int main()
                 window.close();
 			}
         }
-		e1.move(p1);
-		e2.move(p1);
+		
         window.clear();
 		window.draw(background);
-		p1.update(); //draws gun, bullts, updates player, gun
+		p1.update(window); //draws gun, bullts, updates player, gun
 		p1.draw(window); //custom player draw function
-		window.draw(e1);
-		window.draw(e2);
+		spawner.update(background, window);
         window.display();
     }
 

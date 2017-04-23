@@ -8,17 +8,18 @@ Player::~Player() {
 	if (gun != nullptr)
 		delete gun;
 }
-void Player::attachGun(const string &image, const sf::Vector2f &origin, float fireSpeed,
+void Player::attachGun(const string &image, const sf::Vector2f &origin, float shotDelay,
 	float bulletSpeed, int damage, sf::RenderWindow *window) {
-	gun = new Gun(image, origin, fireSpeed, bulletSpeed, damage, window);
+	gun = new Gun(image, origin, shotDelay, bulletSpeed, damage, window);
 	gun->attachPlayer((sf::Sprite *)this);
 }
 /*
 	Moves player, updates gun location, bullet locations and draws 
 	all bullets on this gun.
 */
-void Player::update() { 
+void Player::update(const sf::RenderWindow& window) {
 	move();
+	Helpers::lockObjectInWindow(*this, window);
 	gun->update();
 }
 void Player::draw(sf::RenderWindow &window) {

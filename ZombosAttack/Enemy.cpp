@@ -1,10 +1,11 @@
 #include "Enemy.h"
 
 // constructor and desstructor
-Enemy::Enemy(const float& speed, const unsigned short& health, const unsigned short& damage) 
+Enemy::Enemy(const float& speed, const unsigned short& health, const unsigned short& damage, sf::Texture &texture)
 	: Character(speed, health)
 {
 	this->mDamage = damage;
+	this->setTexture(texture);
 }
 
 Enemy::Enemy(const Enemy & copy) : Character(copy)
