@@ -1,5 +1,5 @@
 #pragma once
-#define ENEMY_SPAWN_DELAY
+#define ENEMY_SPAWN_DELAY 
 #define SPAWN_ACCELERATION
 
 

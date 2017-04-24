@@ -40,3 +40,4 @@ void Collision::update()
 		i++;
 	}
 }
+

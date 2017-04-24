@@ -24,7 +24,7 @@ int main()
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(.05f, .05f);
 
-	Collision collider();
+	Collision collider(&spawner.getEnemies(), &p1.getGun()->getBullets(), &p1);
 	//Setup Controller
 	Controller p1Controller(&p1);
 
@@ -45,6 +45,7 @@ int main()
 		p1.update(window); //draws gun, bullts, updates player, gun
 		p1.draw(window); //custom player draw function
 		spawner.update(background, window);
+		collider.update();
         window.display();
     }
 
