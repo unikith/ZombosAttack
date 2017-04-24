@@ -18,11 +18,11 @@ int main()
 	background.setTexture(texture);
 	//Setup Player
 	player_t.loadFromFile("Circle.png");
-	Player p1(.9, 100);
-	EnemySpawner spawner("Peace-Symbol-Transparent.png", 10, 10, &p1, background);
-	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), 250, 10, 1, &window);
+	Player p1(PLAYER_SPEED, PLAYER_HEALTH);
+	EnemySpawner spawner("Peace-Symbol-Transparent.png", SPAWN_ACCELERATION, ENEMY_SPAWN_DELAY, &p1, background);
+	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), FIRE_DELAY, BULLET_SPEED, BULLET_DAMAGE, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
-	p1.setScale(.05f, .05f);
+	p1.setScale(PLAYER_SCALE, PLAYER_SCALE);
 
 	Collision collider(&spawner.getEnemies(), &p1.getGun()->getBullets(), &p1);
 	//Setup Controller

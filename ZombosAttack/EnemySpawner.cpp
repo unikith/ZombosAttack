@@ -34,16 +34,16 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 	{
 		sf::Vector2f entrancePos = this->determineSpawnPoint(background);
 		spawn(entrancePos, background);
-		if (mSpawnDelay - mSpawnAcceleration > mSpawnAcceleration)
+		if (mSpawnDelay - mSpawnAcceleration > MIN_SPAWN_DELAY)
 		{
 			mSpawnDelay -= mSpawnAcceleration;
 			//window.draw(*mEnemies.back());
 		}
 		mLastSpawnTime = currentTime;
-		cout << "l" << leftCount << endl;
-		cout << "r" << rightCount << endl;
-		cout << "u" << upCount << endl;
-		cout << "d" << downCount << endl;
+		//cout << "l" << leftCount << endl;
+		//cout << "r" << rightCount << endl;
+		//cout << "u" << upCount << endl;
+		//cout << "d" << downCount << endl;
 	}
 
 	for (int i = 0; i < mEnemies.size(); ++i) {
@@ -54,9 +54,10 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 
 void EnemySpawner::spawn(const sf::Vector2f& entrancePos, const sf::Sprite& background)
 {
-	Enemy* e = new Enemy(1, 100, 1, enemyTexture);
-	e->setScale(.05f, .05f);
+	Enemy* e = new Enemy(ENEMY_SPEED, ENEMY_HEALTH, ENEMY_DAMAGE, enemyTexture);
 	e->setPosition(entrancePos);
+	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
+	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2);
 	this->mEnemies.push_back(e);
 	totalCount++;
 }

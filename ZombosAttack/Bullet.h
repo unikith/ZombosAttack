@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <math.h>
+#include "KeyValues.h"
 
 class Bullet : public sf::Sprite
 {

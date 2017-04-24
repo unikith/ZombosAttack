@@ -4,14 +4,11 @@
 #include <vector>
 #include <cstdlib>
 #include <iostream>
+#include "KeyValues.h"
 
 using std::cout;
 using std::endl;
 using std::vector;
-
-typedef enum side {
-	UP = 0, DOWN, LEFT, RIGHT
-}Side;
 
 class EnemySpawner
 {
