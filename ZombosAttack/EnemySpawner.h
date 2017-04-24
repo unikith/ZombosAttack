@@ -20,6 +20,7 @@ public:
 	~EnemySpawner();
 	void update(const sf::Sprite& background, sf::RenderWindow& window);
 	void spawn(const sf::Vector2f& entrancePos, const sf::Sprite& background);
+	vector<Enemy *>& getEnemies() { return this->mEnemies; }
 
 private:
 	vector<Enemy *> mEnemies;

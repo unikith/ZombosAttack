@@ -3,6 +3,8 @@
 #include "Enemy.h"
 #include "Helpers.h"
 #include "EnemySpawner.h"
+#include "KeyValues.h"
+#include "Collision.h"
 
 int main()
 {
@@ -21,6 +23,8 @@ int main()
 	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), 250, 10, 1, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(.05f, .05f);
+
+	Collision collider();
 	//Setup Controller
 	Controller p1Controller(&p1);
 

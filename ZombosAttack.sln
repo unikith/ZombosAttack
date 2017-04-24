@@ -6,10 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZombosAttack", "ZombosAttack\ZombosAttack.vcxproj", "{A227EFAA-54BC-4AE0-AE1A-AEDEB5D88FF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{38334781-B6B5-431B-93D4-6ED3E2DCA461}"
-	ProjectSection(SolutionItems) = preProject
-		ZombosAttack\Helpers.cpp = ZombosAttack\Helpers.cpp
-		ZombosAttack\Helpers.h = ZombosAttack\Helpers.h
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

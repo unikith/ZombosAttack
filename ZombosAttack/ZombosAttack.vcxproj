@@ -168,6 +168,7 @@
     <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Helpers.h" />
+    <ClInclude Include="KeyValues.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>

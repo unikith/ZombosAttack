@@ -18,6 +18,7 @@ public:
 		float bulletSpeed, int damage, sf::RenderWindow *window);
 	void draw(sf::RenderWindow &window);
 	void setTexture(const sf::Texture &texture);
+	Gun * getGun() { return this->gun; }
 	
 private:
 	Gun *gun;
