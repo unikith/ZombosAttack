@@ -43,13 +43,13 @@ void Collision::update()
 		{
 			playerAndEnemyCollision(i);
 		}
-		bool killed = false;
-		for (int j = 0; j < bullets->size() && !killed; j++)
+
+		for (int j = 0; j < bullets->size(); j++)
 		{
 			bullet = *(*bullets)[j];
 			if (this->CheckCol(enemy, bullet))
 			{
-				killed = bulletsAndEnemyCollision(i, j);
+				bulletsAndEnemyCollision(i, j);
 			}
 		} //!j < bullets->size()
 	} // !i < enemyArray->size()
@@ -64,9 +64,8 @@ void Collision::playerAndEnemyCollision(int enemyIndex)
 	}
 }
 
-bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)
+void Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)
 {
-	bool killed = false;
 	(*enemyArray)[enemyIndex]->damageForN(p1->getGun()->getDamage());
 	delete (*bullets)[bulletIndex];
 	bullets->erase(bullets->begin() + bulletIndex);
@@ -77,7 +76,5 @@ bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)
 		delete (*enemyArray)[enemyIndex];
 		enemyArray->erase(enemyArray->begin() + enemyIndex);
 		--enemyIndex;
-		killed = true;
 	}
-	return killed;
 }

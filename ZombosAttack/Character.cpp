@@ -31,10 +31,6 @@ void Character::healForN(const unsigned short n)
 void Character::damageForN(const unsigned short n)
 {
 	mHealth -= n;
-	if (mHealth < 0)
-	{
-		mHealth = 0;
-	}
 }
 
 // Character Functions

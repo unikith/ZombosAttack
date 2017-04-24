@@ -21,6 +21,7 @@ public:
 	void setShooting(bool ifShooting) { this->shooting = ifShooting; }
 	bool getShooting() const { return shooting; }
 	std::vector<Bullet *> & getBullets() { return this->bullets; }
+	int getDamage() const { return this->damage; }
 private:
 	void shoot(sf::Vector2f& spawnPoint, sf::Vector2f& direction);
 	sf::RenderWindow *window; //Needed to find mouse position in the window

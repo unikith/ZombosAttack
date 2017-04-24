@@ -1,9 +1,7 @@
-#include <SFML\Graphics.hpp>
 #include "Controller.h"
 #include "Enemy.h"
 #include "Helpers.h"
 #include "EnemySpawner.h"
-#include "KeyValues.h"
 #include "Collision.h"
 
 int main()
@@ -19,7 +17,7 @@ int main()
 	//Setup Player
 	player_t.loadFromFile("Circle.png");
 	Player p1(PLAYER_SPEED, PLAYER_HEALTH);
-	EnemySpawner spawner("Peace-Symbol-Transparent.png", SPAWN_ACCELERATION, ENEMY_SPAWN_DELAY, &p1, background);
+	EnemySpawner spawner("enemyCircle.png", SPAWN_ACCELERATION, ENEMY_SPAWN_DELAY, &p1, background);
 	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), FIRE_DELAY, BULLET_SPEED, BULLET_DAMAGE, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(PLAYER_SCALE, PLAYER_SCALE);

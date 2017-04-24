@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include <cmath>
+
 class Enemy : public Character
 {
 public:

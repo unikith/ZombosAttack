@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Background.png" />
+    <Image Include="Circle.png" />
     <Image Include="Illuminati.png" />
     <Image Include="Peace-Symbol-Transparent.png" />
   </ItemGroup>

@@ -55,9 +55,9 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 void EnemySpawner::spawn(const sf::Vector2f& entrancePos, const sf::Sprite& background)
 {
 	Enemy* e = new Enemy(ENEMY_SPEED, ENEMY_HEALTH, ENEMY_DAMAGE, enemyTexture);
+	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2);
 	e->setPosition(entrancePos);
 	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
-	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2);
 	this->mEnemies.push_back(e);
 	totalCount++;
 }

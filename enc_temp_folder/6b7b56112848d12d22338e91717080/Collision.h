@@ -13,7 +13,7 @@ public:
 	//bool CheckCol(const sf::Sprite &object1, const sf::Sprite &object2);
 	void update();
 	void playerAndEnemyCollision(int enemyIndex);
-	bool bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex);
+	void bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex);
 private:
 	std::vector<Enemy*>* enemyArray;
 	std::vector<Bullet*>* bullets;

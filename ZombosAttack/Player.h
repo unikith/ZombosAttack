@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Character.h"
 #include "Gun.h"
-#include "Helpers.h"
 
 using std::string;
 
