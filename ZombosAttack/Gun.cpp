@@ -13,7 +13,7 @@ Gun::Gun(const string & image, const sf::Vector2f& origin, float shotDelay,
 	this->window = window;
 	this->shooting = false;
 	this->bulletTexture.loadFromFile("Circle.png"); //CHANGE
-	this->setScale(GUN_SCALE, GUN_SCALE); //Hard coded scale
+	this->setScale(GUN_SCALE, GUN_SCALE);
 	this->mLastShotTime = 0;
 }
 /*
@@ -51,12 +51,12 @@ void Gun::update() {
 	}
 
 	for (int i = 0; i < bullets.size(); ++i) {
-		if (Helpers::isInsideWindow(*(bullets[i]), *window))
+		if (Helpers::isInsideWindow(*(bullets[i]), *window)) // moves bullets
 		{
 			window->draw(*bullets[i]);
 			bullets[i]->move();
 		}
-		else
+		else // deletes bullets that are outside of the window
 		{
 			delete bullets[i];
 			bullets.erase(bullets.begin() + i);

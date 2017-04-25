@@ -1,9 +1,10 @@
 #include "Character.h"
-//Constructors and destructor
+
 Character::Character(const Character & copy)
 {
 	mHealth = copy.mHealth;
 	mSpeed = copy.mSpeed;
+	this->mVelocity = sf::Vector2f(0.0f, 0.0f);
 }
 
  Character::~Character(){/*empty*/}
@@ -33,7 +34,6 @@ void Character::damageForN(const unsigned short n)
 	mHealth -= n;
 }
 
-// Character Functions
 void Character::move()
 {
 	sf::Sprite::move(mVelocity.x, mVelocity.y);

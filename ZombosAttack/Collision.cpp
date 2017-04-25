@@ -33,7 +33,7 @@ void Collision::update()
 {
 	sf::Sprite enemy, player, bullet;
 
-	for (int i = 0; i < enemyArray->size(); i++)
+	for (int i = 0; i < enemyArray->size(); i++) //runs through every enemy
 	{
 
 		enemy = *(*enemyArray)[i];
@@ -43,8 +43,8 @@ void Collision::update()
 		{
 			playerAndEnemyCollision(i);
 		}
-		bool killed = false;
-		for (int j = 0; j < bullets->size() && !killed; j++)
+		bool killed = false; // enemy is removed from the vector if killed, this bool prevents errors caused by this
+		for (int j = 0; j < bullets->size() && !killed; j++) // checks all bullets against current enemy
 		{
 			bullet = *(*bullets)[j];
 			if (this->CheckCol(enemy, bullet))
@@ -67,12 +67,12 @@ void Collision::playerAndEnemyCollision(int enemyIndex)
 bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)
 {
 	bool killed = false;
-	(*enemyArray)[enemyIndex]->damageForN(p1->getGun()->getDamage());
+	(*enemyArray)[enemyIndex]->damageForN(p1->getGun()->getDamage());// damages enemy for bullet damage
 	delete (*bullets)[bulletIndex];
 	bullets->erase(bullets->begin() + bulletIndex);
 	--bulletIndex;
 
-	if ((*enemyArray)[enemyIndex]->getHeath() <= 0)
+	if ((*enemyArray)[enemyIndex]->getHeath() <= 0) // kills enemy
 	{
 		delete (*enemyArray)[enemyIndex];
 		enemyArray->erase(enemyArray->begin() + enemyIndex);

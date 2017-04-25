@@ -2,34 +2,35 @@
 
 bool Helpers::isInsideWindow(const sf::Transformable& object, const sf::RenderWindow& window)
 {
+	bool inWindow = true;
 	sf::Vector2f pos = object.getPosition();
-	if (pos.x > window.getSize().x || pos.x < 0
-		|| pos.y > window.getSize().y || pos.y < 0)
+	if (pos.x > window.getSize().x || pos.x < 0 // outside x axis bounds of window
+		|| pos.y > window.getSize().y || pos.y < 0) // outside y axis bounds of window
 	{
-		return false;
+		inWindow = false;
 	}
 
-	return true;
+	return inWindow;
 }
 
 void Helpers::lockObjectInWindow(sf::Transformable& object, const sf::RenderWindow& window)
 {
 	if (isUpOfWindow(object, window))
 	{
-		object.setPosition(object.getPosition().x, 0);
+		object.setPosition(object.getPosition().x, 0); // moves to top edge of window
 	}
 	else if (isDownOfWindow(object, window))
 	{
-		object.setPosition(object.getPosition().x, window.getSize().y);
+		object.setPosition(object.getPosition().x, window.getSize().y); // moves to bottom edge of window
 	}
 
 	if (isLeftOfWindow(object, window))
 	{
-		object.setPosition(0, object.getPosition().y);
+		object.setPosition(0, object.getPosition().y); // moves to left edge of window
 	}
 	else if (isRightOfWindow(object, window))
 	{
-		object.setPosition(window.getSize().x, object.getPosition().y);
+		object.setPosition(window.getSize().x, object.getPosition().y); // moves to right edge of window
 	}
 }
 

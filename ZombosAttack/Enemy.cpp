@@ -1,16 +1,10 @@
 #include "Enemy.h"
 
-// constructor and desstructor
 Enemy::Enemy(const float& speed, const unsigned short& health, const unsigned short& damage, sf::Texture &texture)
-	: Character(speed, health)
+	: Character(speed, health) // call to base constructor
 {
 	this->mDamage = damage;
 	this->setTexture(texture);
-}
-
-Enemy::Enemy(const Enemy & copy) : Character(copy)
-{
-	mDamage = copy.getDamage();
 }
 
 Enemy::~Enemy(){/*Empty*/}
@@ -28,7 +22,7 @@ void Enemy::updateDirection(const Player& target)
 
 	float magnitude = sqrt(pow(direction.x, 2) + pow(direction.y, 2));
 
-	if (magnitude != 0)
+	if (magnitude != 0) // prevents divide by 0 error
 	{
 		mVelocity.x = direction.x / magnitude * mSpeed;
 		mVelocity.y = direction.y / magnitude * mSpeed;

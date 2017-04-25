@@ -7,10 +7,25 @@ class Bullet : public sf::Sprite
 {
 	friend class Gun;
 public:
+	/// \ breif : argument constructor
+	/// \ params : speed of bullet, direciton of bullet, print texture
+	/// \ precons : none
+	/// \ return : none
 	Bullet(float speed, sf::Vector2f direction, sf::Texture &texture);
+
+	/// \ breif : destructor
+	/// \ params : none
+	/// \ precons : none
+	/// \ return : none
 	~Bullet();
+
+	/// \ breif : moves bullet based upon velocity
+	/// \ params : none
+	/// \ precons : none
+	/// \ return : none
 	void move();
 private:
+	/// \ used for speed and direction of motion
 	sf::Vector2f velocity;
 	float speed;
 };

@@ -12,9 +12,11 @@ Bullet::Bullet(float speed, sf::Vector2f direction, sf::Texture & texture)
 	this->setOrigin(radius, radius);
 	this->setScale(BULLET_SCALE, BULLET_SCALE); //Scale for bullet
 }
+
 Bullet::~Bullet()
 {
 }
+
 void Bullet::move() {
 	sf::Sprite::move(velocity);
 }

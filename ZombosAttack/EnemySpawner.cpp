@@ -1,29 +1,32 @@
 #include "EnemySpawner.h"
 
-
-
-EnemySpawner::EnemySpawner(const string & textureFile, const double& spawnAcceleration, 
-							const double& spawnDelay, Player *p, const sf::Sprite& background)
+EnemySpawner::EnemySpawner(const string & textureFile, const int spawnAcceleration, 
+							const int spawnDelay, Player *p, const sf::Sprite& background)
 {
 	mSpawnAcceleration = spawnAcceleration;
 	mSpawnDelay = spawnDelay;
 	this->enemyTexture.loadFromFile(textureFile);
 	this->p = p;
-	mLastSpawnTime = clock();
-	this->totalCount = 0;
-	spawn(sf::Vector2f(0, background.getGlobalBounds().height / 2), background); // left
-	spawn(sf::Vector2f(background.getGlobalBounds().width, background.getGlobalBounds().height / 2), background); // right
-	spawn(sf::Vector2f(background.getGlobalBounds().width / 2, 0), background); // up 
-	spawn(sf::Vector2f(background.getGlobalBounds().width / 2, background.getGlobalBounds().height), background); // down
+	mLastSpawnTime = clock(); // sets to current time in milliseconds
+	this->totalCount = 0; // incremented when spawns occur below
+	spawn(sf::Vector2f(0, background.getGlobalBounds().height / 2)); // left
+	spawn(sf::Vector2f(background.getGlobalBounds().width, background.getGlobalBounds().height / 2)); // right
+	spawn(sf::Vector2f(background.getGlobalBounds().width / 2, 0)); // up 
+	spawn(sf::Vector2f(background.getGlobalBounds().width / 2, background.getGlobalBounds().height)); // down
+
+	// incremented here because determine spawn location is not called
 	upCount = 1;
 	downCount = 1;
 	leftCount = 1;
 	rightCount = 1;
 }
 
-
 EnemySpawner::~EnemySpawner()
 {
+	for (int i = 0; i < this->mEnemies.size(); i++) // deallocated enemies from heap
+	{
+		delete mEnemies[i];
+	}
 }
 
 
@@ -33,7 +36,7 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 	if (currentTime - mLastSpawnTime >= mSpawnDelay)
 	{
 		sf::Vector2f entrancePos = this->determineSpawnPoint(background);
-		spawn(entrancePos, background);
+		spawn(entrancePos);
 		if (mSpawnDelay - mSpawnAcceleration > MIN_SPAWN_DELAY)
 		{
 			mSpawnDelay -= mSpawnAcceleration;
@@ -52,10 +55,10 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 	}
 }
 
-void EnemySpawner::spawn(const sf::Vector2f& entrancePos, const sf::Sprite& background)
+void EnemySpawner::spawn(const sf::Vector2f& entrancePos)
 {
 	Enemy* e = new Enemy(ENEMY_SPEED, ENEMY_HEALTH, ENEMY_DAMAGE, enemyTexture);
-	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2);
+	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
 	e->setPosition(entrancePos);
 	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
 	this->mEnemies.push_back(e);
@@ -65,7 +68,7 @@ void EnemySpawner::spawn(const sf::Vector2f& entrancePos, const sf::Sprite& back
 sf::Vector2f EnemySpawner::determineSpawnPoint(const sf::Sprite& background)
 {
 	short selection = rand() % 100;
-	int upProb, downProb, leftProb, rightProb;
+	int upProb, downProb, leftProb;
 
 	sf::Vector2f entrancePos;
 
@@ -88,7 +91,7 @@ sf::Vector2f EnemySpawner::determineSpawnPoint(const sf::Sprite& background)
 		entrancePos.y = rand() % int(background.getGlobalBounds().height);
 		leftCount++;
 	}
-	else {
+	else { // right side spawn
 		entrancePos.x = background.getGlobalBounds().width;
 		entrancePos.y = rand() % int(background.getGlobalBounds().height);
 		rightCount++;

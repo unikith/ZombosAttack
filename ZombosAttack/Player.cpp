@@ -1,13 +1,15 @@
 #include "Player.h"
 
 Player::Player(const float& speed, const unsigned int& health) :
-	Character(speed, health) {/*Empty*/
+	Character(speed, health) { // calls base constructor
 	gun = nullptr;
 }
+
 Player::~Player() {
-	if (gun != nullptr)
-		delete gun;
+//	if (gun != nullptr) // delte checks implicitly
+		delete gun; // gun is on the heap
 }
+
 void Player::attachGun(const string &image, const sf::Vector2f &origin, float shotDelay,
 	float bulletSpeed, int damage, sf::RenderWindow *window) {
 	gun = new Gun(image, origin, shotDelay, bulletSpeed, damage, window);
@@ -19,7 +21,7 @@ void Player::attachGun(const string &image, const sf::Vector2f &origin, float sh
 */
 void Player::update(const sf::RenderWindow& window) {
 	move();
-	Helpers::lockObjectInWindow(*this, window);
+	Helpers::lockObjectInWindow(/*pointer to player*/*this, window);
 	gun->update();
 }
 void Player::draw(sf::RenderWindow &window) {
