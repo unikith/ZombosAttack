@@ -21,7 +21,8 @@
 
 #define ENEMY_SPEED .1f
 #define ENEMY_DAMAGE 1
-#define ENEMY_HEALTH 1
+#define ENEMY_HEALTH_MAX 1
+#define ENEMY_HEALTH_MIN 2
 #define ENEMY_SCALE .07f
 
 

@@ -18,7 +18,7 @@ bool Collision::CheckCol(sf::Sprite& s1, sf::Sprite& s2)
 
 	float distance = sqrt(pow(direction.x, 2) + pow(direction.y, 2));
 
-	float totalWidth = s1.getGlobalBounds().width / 2 + s2.getGlobalBounds().width / 2;
+	float totalWidth = (s1.getGlobalBounds().width + s2.getGlobalBounds().width) / 2;
 
 	if (distance < totalWidth)
 	{

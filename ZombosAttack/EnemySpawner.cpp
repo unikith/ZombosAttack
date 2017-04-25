@@ -57,7 +57,7 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 
 void EnemySpawner::spawn(const sf::Vector2f& entrancePos)
 {
-	Enemy* e = new Enemy(ENEMY_SPEED, ENEMY_HEALTH, ENEMY_DAMAGE, enemyTexture);
+	Enemy* e = new Enemy(ENEMY_SPEED, rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN, ENEMY_DAMAGE, enemyTexture);
 	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
 	e->setPosition(entrancePos);
 	e->setScale(ENEMY_SCALE, ENEMY_SCALE);

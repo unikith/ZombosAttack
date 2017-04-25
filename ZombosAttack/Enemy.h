@@ -37,6 +37,9 @@ protected:
 	/// \ used in collisions with the player to decremenet player health
 	unsigned short mDamage;
 
+	/// \ 
+
+
 private: 
 	// Funcitons
 	/// \ breif : updates mVelocity(in base class) so that the enemny is moving

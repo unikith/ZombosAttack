@@ -12,7 +12,7 @@ int main()
 	// initialized window
     sf::RenderWindow window(sf::VideoMode(1489, 644), "Zombos Attack!");
 	// for loading textures
-	sf::Texture texture, player_t, enemy_t;
+	sf::Texture texture, player_t;
 	//Setup Background
 	texture.loadFromFile("Background.png");
 	sf::Sprite background;
@@ -23,6 +23,7 @@ int main()
 	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), FIRE_DELAY, BULLET_SPEED, BULLET_DAMAGE, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(PLAYER_SCALE, PLAYER_SCALE);
+	p1.setPosition(background.getGlobalBounds().width / 2, background.getGlobalBounds().height / 2);
 
 	// Setup Enemy Spawner
 	EnemySpawner spawner("enemyCircle.png", SPAWN_ACCELERATION, ENEMY_SPAWN_DELAY, &p1, background);
