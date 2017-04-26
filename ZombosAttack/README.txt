@@ -3,9 +3,5 @@ Team Name
 death screen
 scoreboard screen
 highscore screen
-initials input
-reset
+initials input 
 main menu
-final sprites
-final sounds
-final tuning

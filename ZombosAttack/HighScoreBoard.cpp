@@ -15,6 +15,15 @@ HighScoreBoard::~HighScoreBoard()
 	saveScores();
 }
 
+void HighScoreBoard::runWindow()
+{
+	while (this->isOpen())
+	{
+
+	}
+
+}
+
 bool HighScoreBoard::evaluateScore(int newScore)
 {
 	bool isInserted = false;

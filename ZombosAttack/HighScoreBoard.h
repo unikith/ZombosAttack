@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML\Graphics.hpp>
 
 #define NUMBER_OF_SCORES 5
 #define NUMBER_OF_INITIALS 3
@@ -16,14 +17,14 @@ typedef struct board_entry
 	string initials;
 }Board_Entry;
 
-class HighScoreBoard
+class HighScoreBoard : public sf::RenderWindow
 {
 public:
 	// Functions
 	HighScoreBoard();
 	~HighScoreBoard();
 
-	bool evaluateScore(int newScore);
+	void runWindow();
 private:
 	// Members
 	fstream mScoreFile;
@@ -33,7 +34,8 @@ private:
 	void loadScores();
 	void saveScores();
 
+	bool evaluateScore(int newScore);
 	int checkNewScore(int newScore);
-	//string promptInitials();
+	string promptInitials();
 };
 
