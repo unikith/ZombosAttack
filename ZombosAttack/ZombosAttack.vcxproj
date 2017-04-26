@@ -156,6 +156,7 @@
     <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Helpers.cpp" />
+    <ClCompile Include="HighScoreBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Helpers.h" />
+    <ClInclude Include="HighScoreBoard.h" />
     <ClInclude Include="KeyValues.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
@@ -178,6 +180,7 @@
     <Image Include="Peace-Symbol-Transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="highScores.csv" />
     <Text Include="README.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

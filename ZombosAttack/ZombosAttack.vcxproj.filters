@@ -45,6 +45,9 @@
     <ClCompile Include="EnemySpawner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HighScoreBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -77,6 +80,9 @@
     <ClInclude Include="KeyValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HighScoreBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Background.png">
@@ -94,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="highScores.csv">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

@@ -58,8 +58,8 @@ void Collision::update()
 void Collision::playerAndEnemyCollision(int enemyIndex)
 {
 	clock_t currentTime = clock();
-	if (currentTime - ((*enemyArray)[enemyIndex]->getLastDamageTime()) >= ENEMY_DAMAGE_DELAY)
-	{
+	//if (currentTime - ((*enemyArray)[enemyIndex]->getLastDamageTime()) >= ENEMY_DAMAGE_DELAY)
+	//{
 		p1->damageForN((*enemyArray)[enemyIndex]->getDamage());
 		if (p1->getHealth() <= 0)
 		{
@@ -67,7 +67,7 @@ void Collision::playerAndEnemyCollision(int enemyIndex)
 		}
 		(*enemyArray)[enemyIndex]->setsLastDamageTime(currentTime);
 		//std::cout << p1->getHeath() << std::endl;
-	}
+	//}
 }
 
 bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)

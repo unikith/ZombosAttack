@@ -4,6 +4,8 @@
 #include "EnemySpawner.h"
 #include "Helpers.h"
 
+#include <iostream>
+
 int main()
 {
 	// seed random numbers by time
@@ -17,6 +19,7 @@ int main()
 	texture.loadFromFile("Background.png");
 	sf::Sprite background;
 	background.setTexture(texture);
+
 	//Setup Player
 	player_t.loadFromFile("Circle.png");
 	Player p1(PLAYER_SPEED, PLAYER_HEALTH);
