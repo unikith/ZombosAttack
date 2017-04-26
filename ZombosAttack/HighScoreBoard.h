@@ -24,6 +24,7 @@ public:
 	~HighScoreBoard();
 
 	void runWindow();
+	void runWindowFromMenu();
 	void saveScores();
 private:
 	// Members

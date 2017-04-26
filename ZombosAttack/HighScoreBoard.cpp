@@ -38,6 +38,7 @@ void HighScoreBoard::runWindow()
 	zombieFont.loadFromFile("ZOMBIE.ttf");
 	text.setFont(zombieFont);
 	text.setPosition(400, 630);
+	scoresTable.setScale(1, 1);
 	//scoreboard scores
 	for (int i = 0; i < NUMBER_OF_SCORES; ++i) {
 		scores[i].setFont(zombieFont);
@@ -95,7 +96,62 @@ void HighScoreBoard::runWindow()
 	}
 
 }
+void HighScoreBoard::runWindowFromMenu()
+{
+	create(sf::VideoMode(900, 650), "Menu");
+	//set positions
+	scoresTable.setPosition(0,0);
+	scoresTable.setScale(1.7, 2.11);
+	//typeInitials.setPosition(0, 600);
+	string str;
+	sf::Text text; //initials text
+	sf::Text playerScore;
+	sf::Text scores[NUMBER_OF_SCORES];
+	sf::Font zombieFont;
+	zombieFont.loadFromFile("ZOMBIE.ttf");
+	text.setFont(zombieFont);
+	text.setPosition(400, 630);
+	//scoreboard scores
+	for (int i = 0; i < NUMBER_OF_SCORES; ++i) {
+		scores[i].setFont(zombieFont);
+		scores[i].setColor(sf::Color::Black);
+		scores[i].setCharacterSize(50);
+		scores[i].setPosition(150, 190 + 100 * i);
+		scores[i].setString(mScoreBoard[i].initials + " " + std::to_string(mScoreBoard[i].score));
+	}
+	//player score stuff
+	//playerScore.setFont(zombieFont);
+	//playerScore.setPosition(350, 540);
+	//playerScore.setCharacterSize(50);
+	//playerScore.setColor(sf::Color::Black);
 
+	playerScore.setString(std::to_string(*score));
+	int letterCount = 0;
+	while (this->isOpen())
+	{
+		sf::Event event;
+		while (pollEvent(event))
+		{
+			if (event.type == sf::Event::TextEntered) {		
+				if (static_cast<char>(event.text.unicode) == 13) {
+					close();
+				}
+			}
+			else if (event.type == sf::Event::Closed)
+			{
+				close();
+			}
+		}
+		clear();
+		draw(scoresTable);
+		draw(text);
+		for (int i = 0; i < NUMBER_OF_SCORES; i++) {
+			draw(scores[i]);
+		}
+		display();
+	}
+
+}
 bool HighScoreBoard::evaluateScore(int newScore, const string & initials)
 {
 	bool isInserted = false;

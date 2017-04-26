@@ -24,9 +24,11 @@ int main()
 		case MainGameMode:
 			gl.runLoop(playerScore);
 			hb.runWindow();
+			hb.saveScores();
+			hb.runWindowFromMenu();
 			break;
 		case HighScoreBoardMode:
-			hb.runWindow();
+			hb.runWindowFromMenu();
 			break;
 		case ExitGameMode:
 			hb.saveScores();
