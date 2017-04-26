@@ -22,6 +22,7 @@ MenuWindow::~MenuWindow()
 {
 }
 void MenuWindow::runMenu() {
+	create(sf::VideoMode(600, 600), "Menu");
 	while (isOpen()) {
 		sf::Event event;
 		while (pollEvent(event))
