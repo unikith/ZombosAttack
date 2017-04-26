@@ -7,7 +7,7 @@ class Enemy : public Character
 {
 public:
 	// Functions
-	/// \ brief : arguement constructor, calls character constructor
+	/// \ brief: arguement constructor, calls character constructor
 	/// \ params : speed and health are from base class character, damage is 
 	/// \			used for collisions with the player and texture is the 
 	/// \			display image
@@ -27,17 +27,7 @@ public:
 	/// \ return : damage member
 	unsigned short getDamage() const;
 
-	/// \ brief : returns lastDamageTime member
-	/// \ params : none
-	/// \ precons : none
-	/// \ return : lastDamageTime member
-	clock_t getLastDamageTime() const { return this->mLastDamage; }
-
-	/// \ brief : sets lastDamageTime member
-	/// \ params : newDamageTime is the time to set the lastDamageTime member to
-	/// \ precons : none
-	/// \ return : none
-	void setsLastDamageTime(clock_t newDamageTime) { mLastDamage = newDamageTime; }
+	int getBaseHealth() const;
 
 	/// \ brief : finds new direction of motion, towards player, and moves the object
 	/// \ params : target is the player the enemy moves towards
@@ -49,8 +39,8 @@ protected:
 	/// \ used in collisions with the player to decremenet player health
 	unsigned short mDamage;
 
-	/// \ tracks last time enemy damaged the player
-	clock_t mLastDamage;
+	/// \ 
+
 
 private: 
 	// Funcitons
@@ -60,6 +50,7 @@ private:
 	/// \ precons : target is a valid player object
 	/// \ return : none
 	void updateDirection(const Player& target);
+	int baseHealth;
 	
 };
 

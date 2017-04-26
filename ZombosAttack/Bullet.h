@@ -7,7 +7,7 @@ class Bullet : public sf::Sprite
 {
 	friend class Gun;
 public:
-	/// \ brief : argument constructor
+	/// \ brief: argument constructor
 	/// \ params : speed of bullet, direciton of bullet, print texture
 	/// \ precons : none
 	/// \ return : none

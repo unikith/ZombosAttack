@@ -1,5 +1,6 @@
 #include <SFML\Graphics.hpp>
 #include "Collision.h"
+#include "KeyValues.h"
 
 Collision::Collision(std::vector<Enemy*>* arr, std::vector<Bullet*>* bulletsArr, Player* player)
 {
@@ -29,7 +30,7 @@ bool Collision::CheckCol(sf::Sprite& s1, sf::Sprite& s2)
 	return result;
 }
 
-void Collision::update()
+void Collision::update(int& totalScore)
 {
 	sf::Sprite enemy, player, bullet;
 
@@ -38,7 +39,6 @@ void Collision::update()
 
 		enemy = *(*enemyArray)[i];
 		player = *p1;
-
 		if (this->CheckCol(enemy, player))
 		{
 			playerAndEnemyCollision(i);
@@ -49,41 +49,38 @@ void Collision::update()
 			bullet = *(*bullets)[j];
 			if (this->CheckCol(enemy, bullet))
 			{
-				killed = bulletsAndEnemyCollision(i, j);
+				killed = bulletsAndEnemyCollision(i, j, totalScore);
 			}
-		} //!j < bullets->size()
+		} // !j < bullets->size()
 	} // !i < enemyArray->size()
 }
 
 void Collision::playerAndEnemyCollision(int enemyIndex)
 {
-	clock_t currentTime = clock();
-	//if (currentTime - ((*enemyArray)[enemyIndex]->getLastDamageTime()) >= ENEMY_DAMAGE_DELAY)
-	//{
-		p1->damageForN((*enemyArray)[enemyIndex]->getDamage());
-		if (p1->getHealth() <= 0)
-		{
-			// call game over
-		}
-		(*enemyArray)[enemyIndex]->setsLastDamageTime(currentTime);
-		//std::cout << p1->getHeath() << std::endl;
-	//}
+	p1->damageForN((*enemyArray)[enemyIndex]->getDamage());
+	if (p1->getHealth() <= 0)
+	{
+		// call game over
+	}
 }
 
-bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)
+bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex, int& totalScore)
 {
 	bool killed = false;
+	int points = (*enemyArray)[enemyIndex]->getBaseHealth();
 	(*enemyArray)[enemyIndex]->damageForN(p1->getGun()->getDamage());// damages enemy for bullet damage
 	delete (*bullets)[bulletIndex];
 	bullets->erase(bullets->begin() + bulletIndex);
 	--bulletIndex;
-
+	
 	if ((*enemyArray)[enemyIndex]->getHealth() <= 0) // kills enemy
 	{
+		totalScore += points * SCORE_MULTIPLIER;
 		delete (*enemyArray)[enemyIndex];
 		enemyArray->erase(enemyArray->begin() + enemyIndex);
 		--enemyIndex;
 		killed = true;
+		
 	}
 	return killed;
 }

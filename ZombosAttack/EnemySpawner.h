@@ -39,18 +39,11 @@ public:
 	/// \ return : none
 	void update(const sf::Sprite& background, sf::RenderWindow& window);
 
-	/// \ brief : instantiates an enemy with correct values and adds it to the enemy vector
+	/// \ brief : instantiates it with correct values
 	/// \ params : entracePos is the x and y coordinate to spawn to
-	/// \ precons : none
+	/// \ precons : entrancePos is a point within window
 	/// \ return : none
-	void spawn(sf::Vector2f entrancePos);
-
-
-	/// \ brief : instantiates an enemy with correct values and adds it to the enemy vector
-	/// \ params : background is used to determine the spawn point
-	/// \ precons : none
-	/// \ return : none
-	void spawn(const sf::Sprite& background);
+	void spawn(const sf::Vector2f& entrancePos);
 
 	/// \ brief : returns reference to mEnemies
 	/// \ params : noone
@@ -81,9 +74,9 @@ private:
 	
 	// Functions
 	/// \ brief : determines the point to which the next enemy is to spawn
-	/// \ params : background to spawn to edge of, pEnemy's position is set to the determined position
+	/// \ params : background to spawn to edge of
 	/// \ precons : none
-	/// \ return : none
-	void determineSpawnPoint(const sf::Sprite& background, Enemy *pEnemy);
+	/// \ return : point vector along an edge of bacckground
+	sf::Vector2f determineSpawnPoint(const sf::Sprite& background);
 };
 

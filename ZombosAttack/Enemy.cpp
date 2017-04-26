@@ -5,7 +5,7 @@ Enemy::Enemy(const float& speed, const unsigned short& health, const unsigned sh
 {
 	this->mDamage = damage;
 	this->setTexture(texture);
-	this->mLastDamage = 0;
+	this->baseHealth = health;
 }
 
 Enemy::~Enemy(){/*Empty*/}
@@ -13,6 +13,11 @@ Enemy::~Enemy(){/*Empty*/}
 unsigned short Enemy::getDamage() const
 {
 	return mDamage;
+}
+
+int Enemy::getBaseHealth() const
+{
+	return this->baseHealth;
 }
 
 void Enemy::updateDirection(const Player& target)

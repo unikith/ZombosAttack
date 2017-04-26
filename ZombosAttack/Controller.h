@@ -9,7 +9,7 @@ class Controller
 {
 public:
 	//Functions
-	/// \ brief : binds a controller object to a player via a pointer, 
+	/// \ brief: binds a controller object to a player via a pointer, 
 	/// \			allows custom controls to be input for a player
 	/// \ params : player to bind controls to, keys for each control
 	/// \ precons : p points to a valid player object

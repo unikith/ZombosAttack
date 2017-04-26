@@ -1,0 +1,28 @@
+﻿  Bullet.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\main.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Player.cpp
+  Gun.cpp
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\gun.cpp(40): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\gun.cpp(42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\gun.cpp(49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\gun.cpp(53): warning C4018: '<': signed/unsigned mismatch
+  EnemySpawner.cpp
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(26): warning C4018: '<': signed/unsigned mismatch
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(52): warning C4018: '<': signed/unsigned mismatch
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(75): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(76): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(77): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(80): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(85): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(91): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\enemyspawner.cpp(96): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Enemy.cpp
+  Controller.cpp
+  Collision.cpp
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\collision.cpp(37): warning C4018: '<': signed/unsigned mismatch
+c:\users\nick\desktop\school\cpts122\zombosattack-master\zombosattack\collision.cpp(47): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  ZombosAttack.vcxproj -> C:\Users\Nick\Desktop\School\Cpts122\ZombosAttack-master\Debug\ZombosAttack.exe

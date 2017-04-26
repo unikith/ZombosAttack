@@ -35,7 +35,8 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 	clock_t currentTime = clock();
 	if (currentTime - mLastSpawnTime >= mSpawnDelay)
 	{
-		spawn(background);
+		sf::Vector2f entrancePos = this->determineSpawnPoint(background);
+		spawn(entrancePos);
 		if (mSpawnDelay - mSpawnAcceleration > MIN_SPAWN_DELAY)
 		{
 			mSpawnDelay -= mSpawnAcceleration;
@@ -54,27 +55,17 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 	}
 }
 
-void EnemySpawner::spawn(const sf::Sprite& background)
+void EnemySpawner::spawn(const sf::Vector2f& entrancePos)
 {
 	Enemy* e = new Enemy(ENEMY_SPEED, rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN, ENEMY_DAMAGE, enemyTexture);
 	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-	determineSpawnPoint(background, e);
-	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
-	this->mEnemies.push_back(e);
-	totalCount++;
-}
-
-void EnemySpawner::spawn(sf::Vector2f entrancePos)
-{
-	Enemy* e = new Enemy(ENEMY_SPEED, rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN, ENEMY_DAMAGE, enemyTexture);
-	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
 	e->setPosition(entrancePos);
+	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
 	this->mEnemies.push_back(e);
 	totalCount++;
 }
 
-void EnemySpawner::determineSpawnPoint(const sf::Sprite& background, Enemy *pEnemy)
+sf::Vector2f EnemySpawner::determineSpawnPoint(const sf::Sprite& background)
 {
 	short selection = rand() % 100;
 	int upProb, downProb, leftProb;
@@ -87,24 +78,24 @@ void EnemySpawner::determineSpawnPoint(const sf::Sprite& background, Enemy *pEne
 	//rightProb = upProb + 100 * (1 - leftCount / totalCount);
 	if (selection < upProb) {
 		entrancePos.x = rand() % int(background.getGlobalBounds().width);
-		entrancePos.y = -pEnemy->getGlobalBounds().height / 2;
+		entrancePos.y = 0;
 		upCount++;
 	}
 	else if (selection < downProb) {
 		entrancePos.x = rand() % int(background.getGlobalBounds().width);
-		entrancePos.y = background.getGlobalBounds().height + pEnemy->getGlobalBounds().height / 2;
+		entrancePos.y = background.getGlobalBounds().height;
 		downCount++;
 	}
 	else if (selection < leftProb) {
-		entrancePos.x = -pEnemy->getGlobalBounds().width / 2;
+		entrancePos.x = 0;
 		entrancePos.y = rand() % int(background.getGlobalBounds().height);
 		leftCount++;
 	}
 	else { // right side spawn
-		entrancePos.x = background.getGlobalBounds().width + pEnemy->getGlobalBounds().width / 2;
+		entrancePos.x = background.getGlobalBounds().width;
 		entrancePos.y = rand() % int(background.getGlobalBounds().height);
 		rightCount++;
 	}
 
-	pEnemy->setPosition(entrancePos);
+	return entrancePos;
 }
