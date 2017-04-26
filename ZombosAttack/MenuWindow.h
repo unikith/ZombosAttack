@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
 #include "Button.h"
+#include <SFML/Audio.hpp>
 
 using std::string;
 
@@ -19,5 +20,8 @@ private:
 	Button highScoreButton;
 	Button exitButton;
 	Mode mode;
+	sf::SoundBuffer buffer_menu;
+	sf::Sound sound_menu;
+
 };
 

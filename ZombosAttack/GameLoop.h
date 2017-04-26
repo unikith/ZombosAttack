@@ -4,6 +4,7 @@
 #include "EnemySpawner.h"
 #include "Helpers.h"
 #include <sstream>
+#include <SFML/Audio.hpp>
 class GameLoop
 {
 public:
@@ -11,5 +12,9 @@ public:
 	~GameLoop();
 
 	void runLoop(int & playerScore);
+private:
+
+	sf::SoundBuffer buffer_gamestart;
+	sf::Sound sound_gamestart;
 };
 

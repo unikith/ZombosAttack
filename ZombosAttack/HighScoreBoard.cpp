@@ -194,7 +194,7 @@ void HighScoreBoard::saveScores()
 	this->mScoreFile.open(SCORE_FILE_NAME);
 	for (int i = 0; i < NUMBER_OF_SCORES; i++)
 	{
-		mScoreFile << mScoreBoard[i].initials << ',' << mScoreBoard[i].score;
+		mScoreFile << mScoreBoard[i].initials << ',' << mScoreBoard[i].score << "\n";
 	}
 	mScoreFile.close();
 }

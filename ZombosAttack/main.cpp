@@ -16,6 +16,8 @@ int main()
 	MenuWindow mainMenu;
 	GameLoop gl;
 	HighScoreBoard hb(&playerScore);
+	sf::SoundBuffer buffer_dead;
+	sf::Sound sound_dead;
 	do
 	{
 		mainMenu.runMenu();
@@ -23,6 +25,10 @@ int main()
 		{
 		case MainGameMode:
 			gl.runLoop(playerScore);
+			//dead
+			buffer_dead.loadFromFile("dead.wav");
+			sound_dead.setBuffer(buffer_dead);
+			sound_dead.play();
 			hb.runWindow();
 			hb.saveScores();
 			hb.runWindowFromMenu();

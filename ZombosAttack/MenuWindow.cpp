@@ -23,6 +23,9 @@ MenuWindow::~MenuWindow()
 }
 void MenuWindow::runMenu() {
 	create(sf::VideoMode(600, 600), "Menu", sf::Style::Close);
+	buffer_menu.loadFromFile("menu.wav");
+	sound_menu.setBuffer(buffer_menu);
+	sound_menu.play();
 	while (isOpen()) {
 		sf::Event event;
 		while (pollEvent(event))

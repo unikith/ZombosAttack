@@ -1,6 +1,6 @@
-TODO
-Team Name
-death screen
-scoreboard screen
-highscore screen
-initials input 
+Team Name: CNJY
+Name				Lab Section
+Christian Burke		3
+James Nelson		6
+Nicholas Fernandez  3
+Yongmin Joh			1

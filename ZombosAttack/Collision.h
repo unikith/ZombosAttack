@@ -45,4 +45,5 @@ private:
 	std::vector<Enemy*>* enemyArray;
 	std::vector<Bullet*>* bullets;
 	Player* p1;
+	
 };
