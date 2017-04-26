@@ -14,8 +14,8 @@ int main()
 	srand(time(NULL));
 	int playerScore = 0;
 	MenuWindow mainMenu;
-			GameLoop gl;
-			HighScoreBoard hb(&playerScore);
+	GameLoop gl;
+	HighScoreBoard hb(&playerScore);
 	do
 	{
 		mainMenu.runMenu();

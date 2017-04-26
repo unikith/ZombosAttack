@@ -15,7 +15,7 @@ HighScoreBoard::HighScoreBoard(int *score)
 	scoresTable.setTexture(scoresTableTexture);
 	typeInitialsTexture.loadFromFile("initial.png");
 	typeInitials.setTexture(typeInitialsTexture);
-	runWindow();
+	//runWindow();
 }
 
 HighScoreBoard::~HighScoreBoard()
