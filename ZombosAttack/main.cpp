@@ -1,10 +1,8 @@
 #include "Collision.h"
 #include "Controller.h"
-//#include "Enemy.h"
 #include "EnemySpawner.h"
 #include "Helpers.h"
-
-#include <iostream>
+#include <sstream>
 
 int main()
 {
@@ -19,10 +17,10 @@ int main()
 	texture.loadFromFile("Background.png");
 	sf::Sprite background;
 	background.setTexture(texture);
-
 	//Setup Player
 	player_t.loadFromFile("Circle.png");
 	Player p1(PLAYER_SPEED, PLAYER_HEALTH);
+	int playerScore = 0;
 	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), FIRE_DELAY, BULLET_SPEED, BULLET_DAMAGE, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(PLAYER_SCALE, PLAYER_SCALE);
@@ -35,8 +33,32 @@ int main()
 	//Setup Controller
 	Controller p1Controller(&p1);
 
+
     while (window.isOpen())
     {
+		//Setup Text 
+		sf::Font font;
+		font.loadFromFile("zombie.ttf"); //Grabs font
+		std::ostringstream sscore, shp;
+		sscore << playerScore;
+		shp << p1.getHealth();
+		sf::Text score, hp;
+
+		hp.setFont(font);
+		hp.setCharacterSize(100);
+		if (p1.getHealth() < PLAYER_HEALTH * 0.1)
+			hp.setColor(sf::Color::Red);
+		else
+			hp.setColor(sf::Color::Green);
+		hp.setPosition(1100, 0);
+		hp.setString(shp.str());
+
+		score.setFont(font);
+		score.setCharacterSize(100);
+		score.setColor(sf::Color::Magenta);
+		score.setPosition(150, 0);
+		score.setString(sscore.str());
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -52,7 +74,9 @@ int main()
 		p1.update(window); //draws gun, bullts, updates player, gun
 		p1.draw(window); //custom player draw function
 		spawner.update(background, window); // runs spawner suite
-		collider.update(); // checks all possible collisions
+		collider.update(playerScore); // checks all possible collisions
+		window.draw(score);
+		window.draw(hp);
         window.display();
     }
 
