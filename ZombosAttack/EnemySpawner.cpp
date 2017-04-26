@@ -65,22 +65,18 @@ void EnemySpawner::spawn(const sf::Sprite& background)
 	case 2:
 	case 3:
 		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureFast);
-		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-		e->setScale(ENEMY_SCALE_SMALL, ENEMY_SCALE_SMALL);
 		break;
 	case 4:
 	case 5:
 		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureSlow);
-		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-		e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
 		break;
 	default:
 		break;
 	}
 	
-	//e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+	e->setScale(ENEMY_SCALE_BASE * health, ENEMY_SCALE_BASE * health);
 	determineSpawnPoint(background, e);
-	//e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
 	this->mEnemies.push_back(e);
 	totalCount++;
 }
@@ -95,20 +91,17 @@ void EnemySpawner::spawn(sf::Vector2f entrancePos)
 	case 2:
 	case 3:
 		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureFast);
-		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-		e->setScale(ENEMY_SCALE_SMALL, ENEMY_SCALE_SMALL);
 		break;
 	case 4:
 	case 5:
 		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureSlow);
-		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-		e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
 		break;
 	default:
 		break;
 	}
-	//e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-	//e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
+
+	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+	e->setScale(ENEMY_SCALE_BASE * health, ENEMY_SCALE_BASE * health);
 	e->setPosition(entrancePos);
 	this->mEnemies.push_back(e);
 	totalCount++;

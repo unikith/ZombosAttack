@@ -14,7 +14,7 @@ GameLoop::~GameLoop()
 void GameLoop::runLoop(int & playerScore)
 {
 	// initialized window
-	sf::RenderWindow window(sf::VideoMode(1489, 644), "Zombos Attack!") ;
+	sf::RenderWindow window(sf::VideoMode(1489, 644), "Andy VS.Zombies III!") ;
 	// for loading textures
 	sf::Texture texture, player_t;
 	//Setup Background
@@ -43,6 +43,7 @@ void GameLoop::runLoop(int & playerScore)
 		sf::Font font;
 		font.loadFromFile("zombie.ttf"); //Grabs font
 		std::ostringstream sscore, shp;
+		sf::Color orange(255, 165, 0, 255), cream(255, 215, 0, 255);
 		sscore << playerScore;
 		shp << p1.getHealth();
 		sf::Text score, hp;
@@ -51,6 +52,10 @@ void GameLoop::runLoop(int & playerScore)
 		hp.setCharacterSize(100);
 		if (p1.getHealth() < PLAYER_HEALTH * 0.1)
 			hp.setColor(sf::Color::Red);
+		else if (p1.getHealth() < PLAYER_HEALTH * 0.3)
+			hp.setColor(orange);
+		else if (p1.getHealth() < PLAYER_HEALTH * 0.6)
+			hp.setColor(cream);
 		else
 			hp.setColor(sf::Color::Green);
 		hp.setPosition(1100, 0);
