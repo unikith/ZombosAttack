@@ -12,7 +12,7 @@ Gun::Gun(const string & image, const sf::Vector2f& origin, float shotDelay,
 	this->angleRad = 0;
 	this->window = window;
 	this->shooting = false;
-	this->bulletTexture.loadFromFile("Circle.png"); //CHANGE
+	this->bulletTexture.loadFromFile("red-glow.png"); //CHANGE
 	this->setScale(GUN_SCALE, GUN_SCALE);
 	this->mLastShotTime = 0;
 }

@@ -1,11 +1,12 @@
 #include "EnemySpawner.h"
 
-EnemySpawner::EnemySpawner(const string & textureFile, const int spawnAcceleration, 
+EnemySpawner::EnemySpawner(const string & textureFileSlow, const string & textureFileFast, const int spawnAcceleration,
 							const int spawnDelay, Player *p, const sf::Sprite& background)
 {
 	mSpawnAcceleration = spawnAcceleration;
 	mSpawnDelay = spawnDelay;
-	this->enemyTexture.loadFromFile(textureFile);
+	this->enemyTextureSlow.loadFromFile(textureFileSlow);
+	this->enemyTextureFast.loadFromFile(textureFileFast);
 	this->p = p;
 	mLastSpawnTime = clock(); // sets to current time in milliseconds
 	this->totalCount = 0; // incremented when spawns occur below
@@ -56,19 +57,58 @@ void EnemySpawner::update(const sf::Sprite& background, sf::RenderWindow& window
 
 void EnemySpawner::spawn(const sf::Sprite& background)
 {
-	Enemy* e = new Enemy(ENEMY_SPEED, rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN, ENEMY_DAMAGE, enemyTexture);
-	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+	int health = rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN;
+	float speed = (ENEMY_SPEED_BASE * (1 - health / (1.25 * ENEMY_HEALTH_MAX)));
+	Enemy* e;
+	switch (health)
+	{
+	case 2:
+	case 3:
+		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureFast);
+		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+		e->setScale(ENEMY_SCALE_SMALL, ENEMY_SCALE_SMALL);
+		break;
+	case 4:
+	case 5:
+		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureSlow);
+		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+		e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
+		break;
+	default:
+		break;
+	}
+	
+	//e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
 	determineSpawnPoint(background, e);
-	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
+	//e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
 	this->mEnemies.push_back(e);
 	totalCount++;
 }
 
 void EnemySpawner::spawn(sf::Vector2f entrancePos)
 {
-	Enemy* e = new Enemy(ENEMY_SPEED, rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN, ENEMY_DAMAGE, enemyTexture);
-	e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
-	e->setScale(ENEMY_SCALE, ENEMY_SCALE);
+	int health = rand() % (ENEMY_HEALTH_MAX - ENEMY_HEALTH_MIN) + ENEMY_HEALTH_MIN;
+	float speed = (ENEMY_SPEED_BASE * (1 - health / (1.25 * ENEMY_HEALTH_MAX)));
+	Enemy* e;
+	switch (health)
+	{
+	case 2:
+	case 3:
+		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureFast);
+		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+		e->setScale(ENEMY_SCALE_SMALL, ENEMY_SCALE_SMALL);
+		break;
+	case 4:
+	case 5:
+		e = new Enemy(speed, health, ENEMY_DAMAGE, enemyTextureSlow);
+		e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+		e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
+		break;
+	default:
+		break;
+	}
+	//e->setOrigin(e->getGlobalBounds().width / 2, e->getGlobalBounds().height / 2); // sets origin to middle of sprite
+	//e->setScale(ENEMY_SCALE_LARGE, ENEMY_SCALE_LARGE);
 	e->setPosition(entrancePos);
 	this->mEnemies.push_back(e);
 	totalCount++;

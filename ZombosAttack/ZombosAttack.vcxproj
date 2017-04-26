@@ -176,10 +176,15 @@
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="AndySun.png" />
     <Image Include="Background.png" />
     <Image Include="Circle.png" />
     <Image Include="Illuminati.png" />
+    <Image Include="Lasercannon.png" />
     <Image Include="Peace-Symbol-Transparent.png" />
+    <Image Include="red-glow.png" />
+    <Image Include="Zombie1.png" />
+    <Image Include="Zombie2.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="highScores.csv" />

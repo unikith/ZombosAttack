@@ -24,7 +24,7 @@ public:
 	/// \ precons : window is set to backgrounds dimensions, textureFile is the name of a valid image
 	/// \			file
 	/// \ return : none
-	EnemySpawner(const string & textureFile, const int spawnAcceleration, const int spawnDelay, 
+	EnemySpawner(const string & textureFileSlow, const string & textureFileFast, const int spawnAcceleration, const int spawnDelay,
 				Player *p, const sf::Sprite& background);
 
 	/// \ brief : destructor that deallocates enemy vector 
@@ -75,7 +75,8 @@ private:
 	int rightCount;
 	int totalCount;
 	/// \ texture that enemies have
-	sf::Texture enemyTexture;
+	sf::Texture enemyTextureSlow;
+	sf::Texture enemyTextureFast;
 	/// \ pointer to player that enemies move towwardds
 	Player *p;
 	

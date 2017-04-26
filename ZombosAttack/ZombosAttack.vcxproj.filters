@@ -103,6 +103,21 @@
     <Image Include="Circle.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Zombie1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AndySun.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Lasercannon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="red-glow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Zombie2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">

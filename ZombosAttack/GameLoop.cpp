@@ -22,15 +22,15 @@ void GameLoop::runLoop(int & playerScore)
 	sf::Sprite background;
 	background.setTexture(texture);
 	//Setup Player
-	player_t.loadFromFile("Circle.png");
+	player_t.loadFromFile("AndySun.png");
 	Player p1(PLAYER_SPEED, PLAYER_HEALTH);
-	p1.attachGun("Rectangle.png", sf::Vector2f(0, 78), FIRE_DELAY, BULLET_SPEED, BULLET_DAMAGE, &window);
+	p1.attachGun("Lasercannon.png", sf::Vector2f(0, 78), FIRE_DELAY, BULLET_SPEED, BULLET_DAMAGE, &window);
 	p1.setTexture(player_t); //custom setTexture, sets origin as well.
 	p1.setScale(PLAYER_SCALE, PLAYER_SCALE);
 	p1.setPosition(background.getGlobalBounds().width / 2, background.getGlobalBounds().height / 2);
 
 	// Setup Enemy Spawner
-	EnemySpawner spawner("enemyCircle.png", SPAWN_ACCELERATION, ENEMY_SPAWN_DELAY, &p1, background);
+	EnemySpawner spawner("Zombie1.png", "Zombie2.png", SPAWN_ACCELERATION, ENEMY_SPAWN_DELAY, &p1, background);
 	// Setup Collision Detecter
 	Collision collider(&spawner.getEnemies(), &p1.getGun()->getBullets(), &p1);
 	//Setup Controller
