@@ -30,3 +30,9 @@
 #define PLAYER_HEALTH 1000
 #define PLAYER_SCALE .05f * PLAYER_OVERALL_SCALE
 #define SCORE_MULTIPLIER 100
+
+#define BUTTON_BULGE 1.2
+
+typedef enum mode {
+	ModeNone, MainGameMode, HighScoreBoardMode, ExitGameMode
+}Mode;

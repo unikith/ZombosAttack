@@ -15,6 +15,18 @@ Gun::Gun(const string & image, const sf::Vector2f& origin, float shotDelay,
 	this->bulletTexture.loadFromFile("red-glow.png"); //CHANGE
 	this->setScale(GUN_SCALE, GUN_SCALE);
 	this->mLastShotTime = 0;
+	buffer_bullet.loadFromFile("bullet.wav");
+
+	sound_bullet.setBuffer(buffer_bullet);
+	sound_bullet.setVolume(50);
+}
+Gun::~Gun()
+{
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		delete this->bullets[i];
+	}
+	bullets.clear();
 }
 /*
 	Grabs the player's sprite (used for position/radius)
@@ -68,4 +80,8 @@ void Gun::shoot(sf::Vector2f& spawnPoint, sf::Vector2f& direction) {
 	Bullet* b = new Bullet(bulletSpeed, direction, bulletTexture);
 	b->setPosition(spawnPoint);
 	bullets.push_back(b);
+	
+	sound_bullet.play();
+
+
 }

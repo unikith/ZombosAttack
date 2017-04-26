@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Controller.cpp" />
@@ -159,10 +160,12 @@
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="HighScoreBoard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuWindow.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Controller.h" />
@@ -173,13 +176,13 @@
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="HighScoreBoard.h" />
     <ClInclude Include="KeyValues.h" />
+    <ClInclude Include="MenuWindow.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AndySun.png" />
     <Image Include="Background.png" />
-    <Image Include="Circle.png" />
-    <Image Include="Illuminati.png" />
+    <Image Include="initial.png" />
     <Image Include="Lasercannon.png" />
     <Image Include="Peace-Symbol-Transparent.png" />
     <Image Include="red-glow.png" />

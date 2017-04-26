@@ -26,13 +26,13 @@ public:
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : none
-	void update(int& totalScore);
+	void update(int& totalScore, sf::RenderWindow& window);
 
 	/// \ brief : runs the logic for and enemy and player collision
 	/// \ params : the index of the enemy in the vector
 	/// \ precons : enemy index is a valid index for the enemy vector
 	/// \ return : none
-	void playerAndEnemyCollision(int enemyIndex);
+	void playerAndEnemyCollision(int enemyIndex, sf::RenderWindow& window);
 
 	/// \ brief : runs the logic for a bullet and enemy collision
 	/// \ params : the index for the bullet and enemy in the vectors

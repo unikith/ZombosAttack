@@ -6,7 +6,7 @@ Collision::Collision(std::vector<Enemy*>* arr, std::vector<Bullet*>* bulletsArr,
 {
 	this->enemyArray = arr;
 	this->bullets = bulletsArr;
-	p1 = player;
+	p1 = player;	
 }
 
 bool Collision::CheckCol(sf::Sprite& s1, sf::Sprite& s2)
@@ -30,7 +30,7 @@ bool Collision::CheckCol(sf::Sprite& s1, sf::Sprite& s2)
 	return result;
 }
 
-void Collision::update(int& totalScore)
+void Collision::update(int& totalScore, sf::RenderWindow& window)
 {
 	sf::Sprite enemy, player, bullet;
 
@@ -41,7 +41,7 @@ void Collision::update(int& totalScore)
 		player = *p1;
 		if (this->CheckCol(enemy, player))
 		{
-			playerAndEnemyCollision(i);
+			playerAndEnemyCollision(i, window);
 		}
 		bool killed = false; // enemy is removed from the vector if killed, this bool prevents errors caused by this
 		for (int j = 0; j < bullets->size() && !killed; j++) // checks all bullets against current enemy
@@ -55,11 +55,14 @@ void Collision::update(int& totalScore)
 	} // !i < enemyArray->size()
 }
 
-void Collision::playerAndEnemyCollision(int enemyIndex)
+void Collision::playerAndEnemyCollision(int enemyIndex, sf::RenderWindow& window)
 {
 	p1->damageForN((*enemyArray)[enemyIndex]->getDamage());
+
+
 	if (p1->getHealth() <= 0)
 	{
+		window.close();
 		// call game over
 	}
 }

@@ -51,6 +51,12 @@
     <ClCompile Include="GameLoop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -89,18 +95,18 @@
     <ClInclude Include="GameLoop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenuWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Background.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Illuminati.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Peace-Symbol-Transparent.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Circle.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Zombie1.png">
@@ -116,6 +122,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Zombie2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="initial.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

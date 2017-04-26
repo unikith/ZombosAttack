@@ -4,6 +4,7 @@
 													// if moving in two directions
 
 #include "Player.h" // Controller binds to a player via a pointer
+#include <SFML\Audio.hpp>
 
 class Controller
 {

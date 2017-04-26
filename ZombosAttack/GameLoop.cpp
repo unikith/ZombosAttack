@@ -36,6 +36,14 @@ void GameLoop::runLoop(int & playerScore)
 	//Setup Controller
 	Controller p1Controller(&p1);
 
+	//setup backgroung music
+
+	sf::Music music;
+
+	music.openFromFile("BeethovenVirus.wav"); // green tier
+	music.play();
+	music.setLoop(true);
+
 
 	while (window.isOpen())
 	{
@@ -50,14 +58,22 @@ void GameLoop::runLoop(int & playerScore)
 
 		hp.setFont(font);
 		hp.setCharacterSize(100);
-		if (p1.getHealth() < PLAYER_HEALTH * 0.1)
+		if (p1.getHealth() < PLAYER_HEALTH * 0.1 && hp.getColor() != sf::Color::Red) // red tier
+		{
 			hp.setColor(sf::Color::Red);
-		else if (p1.getHealth() < PLAYER_HEALTH * 0.3)
+		}
+		else if (p1.getHealth() < PLAYER_HEALTH * 0.3 && hp.getColor() != orange) // 
+		{
 			hp.setColor(orange);
-		else if (p1.getHealth() < PLAYER_HEALTH * 0.6)
+		}
+		else if (p1.getHealth() < PLAYER_HEALTH * 0.6 && hp.getColor() != cream)
+		{
 			hp.setColor(cream);
+		}
 		else
+		{
 			hp.setColor(sf::Color::Green);
+		}
 		hp.setPosition(1100, 0);
 		hp.setString(shp.str());
 
@@ -82,10 +98,9 @@ void GameLoop::runLoop(int & playerScore)
 		p1.update(window); //draws gun, bullts, updates player, gun
 		p1.draw(window); //custom player draw function
 		spawner.update(background, window); // runs spawner suite
-		collider.update(playerScore); // checks all possible collisions
+		collider.update(playerScore, window); // checks all possible collisions
 		window.draw(score);
 		window.draw(hp);
 		window.display();
 	}
-
 }

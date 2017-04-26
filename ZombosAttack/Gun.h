@@ -7,6 +7,7 @@
 #include <iostream>
 //#include <math.h>
 //#include <SFML/Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include <vector>
 
 #define PI 3.14159265
@@ -24,6 +25,7 @@ public:
 	Gun(const string & image, const sf::Vector2f& origin, float shotDelay, 
 		float bulletSpeed, int damage, sf::RenderWindow *window);
 
+	~Gun();
 	/// \ brief : bind the player and the gun together
 	/// \ params : p is a sprite that is the base class for player
 	/// \ precons : none
@@ -76,6 +78,8 @@ private:
 	clock_t mLastShotTime;
 	/// \ used to store shot bullets
 	std::vector<Bullet*> bullets;
+	sf::SoundBuffer buffer_bullet;
+	sf::Sound sound_bullet;
 	
 	/// \ brief : spawns a bullet in the direction of input direction
 	/// \ params : spawnpoint is initial position, direction is velocity vectore
