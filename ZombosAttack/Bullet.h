@@ -7,19 +7,19 @@ class Bullet : public sf::Sprite
 {
 	friend class Gun;
 public:
-	/// \ breif : argument constructor
+	/// \ brief : argument constructor
 	/// \ params : speed of bullet, direciton of bullet, print texture
 	/// \ precons : none
 	/// \ return : none
 	Bullet(float speed, sf::Vector2f direction, sf::Texture &texture);
 
-	/// \ breif : destructor
+	/// \ brief : destructor
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : none
 	~Bullet();
 
-	/// \ breif : moves bullet based upon velocity
+	/// \ brief : moves bullet based upon velocity
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : none

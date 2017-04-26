@@ -15,7 +15,7 @@ using std::string;
 
 class Gun : public sf::Sprite {
 public:
-	/// \ breif : arguement constructor
+	/// \ brief : arguement constructor
 	/// \ params : image is the file the gun texture is read from, origin is the point of rotation,
 	/// \			shotDelay, bulletSpeed, and damage are attributes related to bullet spawning, 
 	/// \			window where gun and bullets are drawn to
@@ -24,37 +24,37 @@ public:
 	Gun(const string & image, const sf::Vector2f& origin, float shotDelay, 
 		float bulletSpeed, int damage, sf::RenderWindow *window);
 
-	/// \ breif : bind the player and the gun together
+	/// \ brief : bind the player and the gun together
 	/// \ params : p is a sprite that is the base class for player
 	/// \ precons : none
 	/// \ return : none
 	void attachPlayer(sf::Sprite *p);
 
-	/// \ breif : rotates gun to mouse, moves bullets, and shoots if necessary
+	/// \ brief : rotates gun to mouse, moves bullets, and shoots if necessary
 	/// \ params : none
 	/// \ precons : attached to player
 	/// \ return : none
 	void update();
 
-	/// \ breif : sets shooting bool to input value 
+	/// \ brief : sets shooting bool to input value 
 	/// \ params : ifShooting is the input value
 	/// \ precons : none
 	/// \ return : none
 	void setShooting(bool ifShooting) { this->shooting = ifShooting; }
 
-	/// \ breif : returns shooting member
+	/// \ brief : returns shooting member
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : shooting member
 	bool getShooting() const { return shooting; }
 
-	/// \ breif : returns a pointer to the bullet vector
+	/// \ brief : returns a pointer to the bullet vector
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : a pointer to the bullets vector member
 	std::vector<Bullet *> & getBullets() { return this->bullets; }
 
-	/// \ breif : returns the damage member
+	/// \ brief : returns the damage member
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : the damage member
@@ -77,7 +77,7 @@ private:
 	/// \ used to store shot bullets
 	std::vector<Bullet*> bullets;
 	
-	/// \ breif : spawns a bullet in the direction of input direction
+	/// \ brief : spawns a bullet in the direction of input direction
 	/// \ params : spawnpoint is initial position, direction is velocity vectore
 	/// \ precons : none
 	/// \ return : none

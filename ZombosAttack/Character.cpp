@@ -9,7 +9,7 @@ Character::Character(const Character & copy)
 
  Character::~Character(){/*empty*/}
 
-Character::Character(const float& speed, const unsigned short& health)
+Character::Character(const float& speed, const short& health)
 {
 	mHealth = health;
 	mSpeed = speed;
@@ -19,7 +19,8 @@ float Character::getSpeed() const
 {
 	return mSpeed;
 }
-unsigned short Character::getHeath() const
+
+short Character::getHealth() const
 {
 	return mHealth;
 }

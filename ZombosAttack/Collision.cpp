@@ -22,7 +22,7 @@ bool Collision::CheckCol(sf::Sprite& s1, sf::Sprite& s2)
 
 	if (distance < totalWidth)
 	{
-		std::cout << "something happened!" << std::endl;
+		//std::cout << "something happened!" << std::endl;
 		result = true;
 	}
 
@@ -57,10 +57,16 @@ void Collision::update()
 
 void Collision::playerAndEnemyCollision(int enemyIndex)
 {
-	p1->damageForN((*enemyArray)[enemyIndex]->getDamage());
-	if (p1->getHeath() <= 0)
+	clock_t currentTime = clock();
+	if (currentTime - ((*enemyArray)[enemyIndex]->getLastDamageTime()) >= ENEMY_DAMAGE_DELAY)
 	{
-		// call game over
+		p1->damageForN((*enemyArray)[enemyIndex]->getDamage());
+		if (p1->getHealth() <= 0)
+		{
+			// call game over
+		}
+		(*enemyArray)[enemyIndex]->setsLastDamageTime(currentTime);
+		//std::cout << p1->getHeath() << std::endl;
 	}
 }
 
@@ -72,7 +78,7 @@ bool Collision::bulletsAndEnemyCollision(int &enemyIndex, int &bulletIndex)
 	bullets->erase(bullets->begin() + bulletIndex);
 	--bulletIndex;
 
-	if ((*enemyArray)[enemyIndex]->getHeath() <= 0) // kills enemy
+	if ((*enemyArray)[enemyIndex]->getHealth() <= 0) // kills enemy
 	{
 		delete (*enemyArray)[enemyIndex];
 		enemyArray->erase(enemyArray->begin() + enemyIndex);

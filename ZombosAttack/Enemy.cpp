@@ -5,6 +5,7 @@ Enemy::Enemy(const float& speed, const unsigned short& health, const unsigned sh
 {
 	this->mDamage = damage;
 	this->setTexture(texture);
+	this->mLastDamage = 0;
 }
 
 Enemy::~Enemy(){/*Empty*/}

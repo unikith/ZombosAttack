@@ -17,7 +17,7 @@ class EnemySpawner
 {
 public:
 	// Functions
-	/// \ breif : arguement constructor, sets spawn attributes
+	/// \ brief : arguement constructor, sets spawn attributes
 	/// \ params : textureFile is file to read enemy textures from, spawn acceleratoin and delay
 	/// \			control spawn times, p is the player that the enemies move toward, and background 
 	/// \			defines edges to spawn to
@@ -27,25 +27,32 @@ public:
 	EnemySpawner(const string & textureFile, const int spawnAcceleration, const int spawnDelay, 
 				Player *p, const sf::Sprite& background);
 
-	/// \ breif : destructor that deallocates enemy vector 
+	/// \ brief : destructor that deallocates enemy vector 
 	/// \ params : none
 	/// \ precons : none
 	/// \ return : none
 	~EnemySpawner();
 
-	/// \ breif : spawns enemy if spawn delay has passed, moves and draws enemies from enemy array
+	/// \ brief : spawns enemy if spawn delay has passed, moves and draws enemies from enemy array
 	/// \ params : background to spawn to and window to draw to
 	/// \ precons : window is instantiated and the size of background
 	/// \ return : none
 	void update(const sf::Sprite& background, sf::RenderWindow& window);
 
-	/// \ breif : instantiates it with correct values
+	/// \ brief : instantiates an enemy with correct values and adds it to the enemy vector
 	/// \ params : entracePos is the x and y coordinate to spawn to
-	/// \ precons : entrancePos is a point within window
+	/// \ precons : none
 	/// \ return : none
-	void spawn(const sf::Vector2f& entrancePos);
+	void spawn(sf::Vector2f entrancePos);
 
-	/// \ breif : returns reference to mEnemies
+
+	/// \ brief : instantiates an enemy with correct values and adds it to the enemy vector
+	/// \ params : background is used to determine the spawn point
+	/// \ precons : none
+	/// \ return : none
+	void spawn(const sf::Sprite& background);
+
+	/// \ brief : returns reference to mEnemies
 	/// \ params : noone
 	/// \ precons : none
 	/// \ return : reference to mEnemies
@@ -73,10 +80,10 @@ private:
 	Player *p;
 	
 	// Functions
-	/// \ breif : determines the point to which the next enemy is to spawn
-	/// \ params : background to spawn to edge of
+	/// \ brief : determines the point to which the next enemy is to spawn
+	/// \ params : background to spawn to edge of, pEnemy's position is set to the determined position
 	/// \ precons : none
-	/// \ return : point vector along an edge of bacckground
-	sf::Vector2f determineSpawnPoint(const sf::Sprite& background);
+	/// \ return : none
+	void determineSpawnPoint(const sf::Sprite& background, Enemy *pEnemy);
 };
 
