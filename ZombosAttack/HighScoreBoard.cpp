@@ -25,7 +25,7 @@ HighScoreBoard::~HighScoreBoard()
 
 void HighScoreBoard::runWindow()
 {
-	create(sf::VideoMode(700, 700), "Menu");
+	create(sf::VideoMode(700, 700), "Menu", sf::Style::Close);
 	//set positions
 	gameOver.setPosition(0, -75);
 	scoresTable.setPosition(75, 225);
@@ -98,7 +98,7 @@ void HighScoreBoard::runWindow()
 }
 void HighScoreBoard::runWindowFromMenu()
 {
-	create(sf::VideoMode(900, 650), "Menu");
+	create(sf::VideoMode(900, 650), "Menu", sf::Style::Close);
 	//set positions
 	scoresTable.setPosition(0,0);
 	scoresTable.setScale(1.7, 2.11);

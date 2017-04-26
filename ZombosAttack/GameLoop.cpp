@@ -14,7 +14,7 @@ GameLoop::~GameLoop()
 void GameLoop::runLoop(int & playerScore)
 {
 	// initialized window
-	sf::RenderWindow window(sf::VideoMode(1489, 644), "Andy VS.Zombies III!") ;
+	sf::RenderWindow window(sf::VideoMode(1489, 644), "Andy VS.Zombies III!", sf::Style::Close);
 	// for loading textures
 	sf::Texture texture, player_t;
 	//Setup Background
@@ -39,7 +39,7 @@ void GameLoop::runLoop(int & playerScore)
 	//setup backgroung music
 
 	sf::Music music;
-
+	music.setVolume(80);
 	music.openFromFile("BeethovenVirus.wav"); // green tier
 	music.play();
 	music.setLoop(true);

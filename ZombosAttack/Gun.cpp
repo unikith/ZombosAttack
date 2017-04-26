@@ -18,7 +18,7 @@ Gun::Gun(const string & image, const sf::Vector2f& origin, float shotDelay,
 	buffer_bullet.loadFromFile("bullet.wav");
 
 	sound_bullet.setBuffer(buffer_bullet);
-	sound_bullet.setVolume(50);
+	sound_bullet.setVolume(55);
 }
 Gun::~Gun()
 {

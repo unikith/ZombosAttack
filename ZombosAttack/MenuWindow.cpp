@@ -5,7 +5,7 @@
 MenuWindow::MenuWindow()
 {
 	//Set up basics
-	create(sf::VideoMode(600, 600), "Menu");
+	create(sf::VideoMode(600, 600), "Menu", sf::Style::Close);
 	mode = ModeNone;
 	backgroundTexture.loadFromFile("menu.png");
 	background.setTexture(backgroundTexture);
@@ -22,7 +22,7 @@ MenuWindow::~MenuWindow()
 {
 }
 void MenuWindow::runMenu() {
-	create(sf::VideoMode(600, 600), "Menu");
+	create(sf::VideoMode(600, 600), "Menu", sf::Style::Close);
 	while (isOpen()) {
 		sf::Event event;
 		while (pollEvent(event))
